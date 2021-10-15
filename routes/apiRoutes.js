@@ -8,12 +8,14 @@ router.get('/notes', (req, res) => {
 
 router.post('/notes', (req, res) => {
     const save = req.body;
-    let results = notes
+    let results = notes;
     results.push(save);
+    
     fs.writeFile('db/db.json', JSON.stringify(results), (err) => {
         if (err) throw err;
-        console.log('Saved!');
+        console.log('saved!');
     });
+    
     res.json(results);
 });
 
