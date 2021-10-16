@@ -23,7 +23,6 @@ router.post('/notes', (req, res) => {
 router.delete('/notes/:id', (req, res) => {
     const noteID = req.params.id;
     let results = notes;
-
     for(let i = 0; i < results.length; i++) {
         if(results[i].id == noteID) {
             results.splice(i, 1);
