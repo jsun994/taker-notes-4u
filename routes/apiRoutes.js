@@ -21,11 +21,16 @@ router.post('/notes', (req, res) => {
 });
 
 router.delete('/notes/:id', (req, res) => {
-    let noteID = req.params.id;
-    //console.log(noteID);
+    const noteID = req.params.id;
     let results = notes;
 
-    results.splice(req.params.id, 1);
+    for(let i = 0; i < results.length; i++) {
+        if(results[i].id == noteID) {
+            results.splice(i, 1);
+            break;
+        }
+    }
+
     fs.writeFile('db/db.json', JSON.stringify(results), (err) => {
         if (err) throw err;
         console.log('deleted!');
